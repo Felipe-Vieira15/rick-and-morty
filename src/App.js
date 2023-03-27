@@ -49,10 +49,10 @@ function App() {
 
     return todosPersonagens.map(personagem => 
     <div className="card char">
-      <div className="char-info">
+      <div>
         <img src={personagem.image} />
       </div>
-      <div className="char-info">
+      <div>
         {personagem.name}
       </div>
       <div className="char-info">
@@ -61,8 +61,11 @@ function App() {
       <div className="char-info">
         <span>Gênero: {personagem.gender == "Male" ? "Masculino" : "Feminino"}</span>
       </div>
-      <div className="lista secundaria">
-        <span>Participações: {personagem.episode.map(ep => <b>.</b>)}</span>
+      <div className="lista-secundaria">
+        <span>Participações: </span>
+        {  personagem.episode.map(ep => (
+        <span key={personagem.name + (ep.split('episode/')[1])} > EP:{(ep.split('episode/')[1])}</span>
+        ))}
       </div>
       <div className="char-info">
         <span>Status: </span>{personagem.status == "Alive" ? "Vivo" : personagem.status == "Unknown" ? "Desconhecido" : "Morto"}
@@ -82,7 +85,7 @@ function App() {
       <header className="cabecalho">
         <h1>Rick and Morty API</h1>
       </header>
-      <div className="lista principal">
+      <div className="lista-principal">
         {conteudo}
       </div>
     </div>
